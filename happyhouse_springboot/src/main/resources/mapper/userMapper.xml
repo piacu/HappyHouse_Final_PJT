@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.happyhouse.model.mapper.UserMapper">
+	
+	<!-- User -->
+	<insert id="insertUser" parameterType="UserDTO">
+		Insert into user 
+		values(#{id}, #{password}, #{name}, #{email}, #{age})
+	</insert>
+	
+	<select id="viewUserId" parameterType="String" resultType="UserDTO">
+		Select * 
+		from user 
+		where id=#{id}
+	</select>
+
+	<select id="viewUser" resultType="UserDTO">
+		Select * from user
+	</select>
+	
+	<delete id="deleteUser" parameterType="String">
+		Delete from user where id=#{id}
+	</delete>
+	
+	<update id="updateUser" parameterType="UserDTO">
+		Update user 
+		set password=#{password}, name=#{name}, email=#{email}, age=#{age} 
+		where id=#{id}
+	</update>
+	
+	<select id="loginUser" parameterType="String" resultType="UserDTO">
+		select id, password, name, email, age
+		from user
+		where id = #{id} and password = #{pw}
+	</select>
+
+	<select id="findPW" parameterType="String" resultType="String">
+		select password 
+		from user 
+		where id=#{id} and email=#{email}
+	</select>
+	
+	<!-- UserInter -->
+	<insert id="insertUserInter" parameterType="map">
+		Insert into userinter(id, aptCode, apartmentName, buildyear, dongCode, dong, jibun, lat, lng, sidoname, gugunname, recentprice)
+		values(#{id}, #{aptCode}, #{apartmentName}, #{buildyear}, #{dongCode}, #{dong}, #{jibun}, #{lat}, #{lng}, #{sidoname}, #{gugunname}, #{recentPrice})
+	</insert>
+	
+	<!-- 미사용 인듯? -->
+	<select id="viewUserInter" parameterType="String">
+		Select * from userinter
+	</select>
+
+	<select id="viewUserInterId" parameterType="String" resultType="HouseInfoDto">
+		select * from userinter where id = #{id};
+	</select>
+	
+	<delete id="deleteUserInter" parameterType="String">
+		Delete from userinter 
+		where id=#{id} and aptCode=#{aptCode}
+	</delete>
+	
+	<!-- 미사용인듯? -->
+	<select id="viewAptUserInter" parameterType="String">
+		select i.aptName, i.dongName, d.dealYear, d.dealMonth, d.dealDay, d.dealAmount, d.area 
+		from houseinfo i inner join housedeal d 
+		on i.aptCode = d.aptCode 
+		where i.dongCode in (select dongCode 
+							 from userinter 
+							 where id=#{id})
+	</select>
+
+</mapper>
