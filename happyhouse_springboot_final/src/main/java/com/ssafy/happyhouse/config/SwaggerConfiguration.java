@@ -21,7 +21,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 public class SwaggerConfiguration {
 	
 	// http://localhost/swagger-ui/ 를 통해 확인가능
-	
 	private String version = "V1";
 	private String title = "SSAFY HappyHouse PJT API " + version;
 	
