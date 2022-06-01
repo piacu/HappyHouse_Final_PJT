@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.ssafy.happyhouse.model.HouseDealInfoDTO;
 import com.ssafy.happyhouse.model.HouseInfoDto;
-import com.ssafy.happyhouse.model.SidoGugunCodeDto;
 
 public interface HouseMapService {
 	

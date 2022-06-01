@@ -7,7 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.ssafy.happyhouse.model.HouseDealInfoDTO;
 import com.ssafy.happyhouse.model.HouseInfoDto;
-import com.ssafy.happyhouse.model.SidoGugunCodeDto;
 
 @Mapper
 public interface HouseMapMapper {
