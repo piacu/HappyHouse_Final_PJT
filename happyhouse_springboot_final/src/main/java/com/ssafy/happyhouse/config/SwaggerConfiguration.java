@@ -20,6 +20,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfiguration {
 	
+	// http://localhost/swagger-ui/ 를 통해 확인가능
 	private String version = "V1";
 	private String title = "SSAFY HappyHouse PJT API " + version;
 	
@@ -27,8 +28,8 @@ public class SwaggerConfiguration {
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2).consumes(getConsumeContentTypes()).produces(getProduceContentTypes())
 					.apiInfo(apiInfo()).groupName(version).select()
-					.apis(RequestHandlerSelectors.basePackage("com.ssafy.guestbook.controller"))
-					.paths(regex("/api/**")).build()
+					.apis(RequestHandlerSelectors.basePackage("com.ssafy.happyhouse.controller"))
+					.paths(regex("/.*")).build()
 					.useDefaultResponseMessages(false);
 	}
 	

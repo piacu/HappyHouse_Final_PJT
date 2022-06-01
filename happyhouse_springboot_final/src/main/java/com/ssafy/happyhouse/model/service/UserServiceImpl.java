@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.happyhouse.model.HouseInfoDto;
 import com.ssafy.happyhouse.model.UserDTO;
-import com.ssafy.happyhouse.model.UserInterDTO;
 import com.ssafy.happyhouse.model.mapper.UserMapper;
 
 @Service
@@ -17,9 +16,25 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserMapper userMapper;
 
+	// User
+	@Override
+	public UserDTO loginUser(String id, String pw) throws SQLException {
+		return userMapper.loginUser(id, pw);
+	}
+	
 	@Override
 	public void insertUser(UserDTO c) throws SQLException {
 		userMapper.insertUser(c);
+	}
+
+	@Override
+	public void deleteUser(String id) throws SQLException {
+		userMapper.deleteUser(id);
+	}
+	
+	@Override
+	public void updateUser(UserDTO c) throws SQLException {
+		userMapper.updateUser(c);
 	}
 
 	@Override
@@ -27,31 +42,7 @@ public class UserServiceImpl implements UserService {
 		return userMapper.viewUserId(id);
 	}
 
-	@Override
-	public List<UserDTO> viewUser() throws SQLException {
-		return userMapper.viewUser();
-	}
-
-	@Override
-	public void deleteUser(String id) throws SQLException {
-		userMapper.deleteUser(id);
-	}
-
-	@Override
-	public void updateUser(UserDTO c) throws SQLException {
-		userMapper.updateUser(c);
-	}
-
-	@Override
-	public UserDTO loginUser(String id, String pw) throws SQLException {
-		return userMapper.loginUser(id, pw);
-	}
-
-	@Override
-	public String findPW(String id, String email) throws SQLException {
-		return userMapper.findPW(id, email);
-	}
-
+	// UserInter
 	@Override
 	public void insertUserInter(Object data) {
 		userMapper.insertUserInter(data);
@@ -63,18 +54,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void viewUserInter() {
-		userMapper.viewUserInter();
-	}
-
-	@Override
 	public void deleteUserInter(String id, String aptCode) {
 		userMapper.deleteUserInter(id, aptCode);
-	}
-
-	@Override
-	public void viewAptUserInter(String id) {
-		userMapper.viewAptUserInter(id);
 	}
 
 }

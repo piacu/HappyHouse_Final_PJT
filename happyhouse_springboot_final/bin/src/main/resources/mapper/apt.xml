@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.ssafy.happyhouse.model.mapper.HouseMapMapper">
+
+	<select id="getSido" resultType="sidoGugunCodeDto">
+		select left(sidoCode,2)
+		sidoCode, sidoName
+		from sidocode
+		order by sidoCode
+	</select>
+
+	<select id="getGugunInSido" parameterType="string"
+		resultType="sidoGugunCodeDto">
+		select left(gugunCode,5) gugunCode, gugunName
+		from guguncode
+		where left(gugunCode,2) = #{sido}
+		order by gugunCode
+	</select>
+	
+	<select id="getDongInGugun" parameterType="string" resultType="HouseInfoDto">
+		select distinct dongName, dongCode
+		from houseinfo
+		where
+		left(dongCode, 5) = #{gugun}
+		order by dongName
+	</select>
+	<select id="getAptInDong" parameterType="string"
+		resultType="houseInfoDto">
+		select * from houseview where dongCode = #{dong} and recentPrice is not null
+	</select>
+
+	<!-- 아파트명으로 검색하기 -->
+	<select id="viewHouseByName" parameterType="String"
+		resultType="HouseInfoDTO">
+		select * from houseview where aptName LIKE CONCAT('%', #{houseName}, '%') and recentPrice is not null
+	</select>
+	
+	<select id="getAllHouse" parameterType="map" resultType="HouseInfoDto">
+		select * from houseview
+		where (lat between #{lat1} and #{lat2})
+		and (lng between #{lng1} and #{lng2}) and (replace(recentPrice, ",", "") between #{min} and ${max})
+	</select>
+	
+	<!-- 아파트 전체 거래 조회 -->
+	<select id="getHouseDeal" parameterType="String" resultType="HouseDealInfoDTO">
+		select * from housedeal where aptCode = #{aptCode} order by dealYear desc, dealMonth desc, dealMonth desc
+	</select>
+	
+	<!-- 동명으로 검색하기 -->
+	<select id="viewHouseByDong" parameterType="String"
+		resultType="HouseInfoDTO">
+		select * from houseview where dongName LIKE CONCAT('%', #{dongName}, '%') and recentPrice is not null
+	</select>
+</mapper>

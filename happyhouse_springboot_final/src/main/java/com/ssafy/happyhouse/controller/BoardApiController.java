@@ -20,11 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.happyhouse.model.BoardDTO;
 import com.ssafy.happyhouse.model.service.BoardService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
 @RestController
 @RequestMapping("/board")
+@Api("Board Controller V1")
 public class BoardApiController {
 
 	private static final Logger logger = LoggerFactory.getLogger(BoardApiController.class);
