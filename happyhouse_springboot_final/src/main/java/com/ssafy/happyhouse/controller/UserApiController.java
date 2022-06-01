@@ -133,7 +133,7 @@ public class UserApiController {
 			return exceptionHandling(e);
 		}
 	}
-	
+
 	@ApiOperation(value = "해당 유저가 아파트코드에 해당하는 아파트 관심 정보를 삭제한다.", response = List.class)
 	@DeleteMapping(value = "/userinter/{id}/{aptCode}")
 	public ResponseEntity<?> deleteuserinter(@PathVariable("id") String id, @PathVariable("aptCode") String aptCode) {
@@ -149,7 +149,7 @@ public class UserApiController {
 			return exceptionHandling(e);
 		}
 	}
-	
+
 	private ResponseEntity<?> exceptionHandling(Exception e) {
 		e.printStackTrace();
 		return new ResponseEntity<String>("Error : " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);

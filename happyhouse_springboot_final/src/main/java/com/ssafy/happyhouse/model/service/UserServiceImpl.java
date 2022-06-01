@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
 	public void updateUser(UserDTO c) throws SQLException {
 		userMapper.updateUser(c);
 	}
-	
+
 	@Override
 	public UserDTO viewUserId(String id) throws SQLException {
 		return userMapper.viewUserId(id);

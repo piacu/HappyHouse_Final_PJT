@@ -55,4 +55,5 @@
 		where id=#{id} and aptCode=#{aptCode}
 	</delete>	
 
+
 </mapper>

@@ -18,4 +18,5 @@ public interface UserService {
 	public void insertUserInter(Object o);
 	public List<HouseInfoDto> viewUserInterId(String id) ;
 	public void deleteUserInter(String id, String aptCode);
+
 }
